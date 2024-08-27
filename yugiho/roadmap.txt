@@ -1,0 +1,36 @@
+W - page web:
+    1 - retrieve array all card and informations    | chuncker les info 
+    2 - boucle to find the card code                | parraleliser les boucles pour aller plus vite + utiliser l'upgrade plus bas
+    3 - api.js pour les script                      | Disocier le fichier index.html pour mettre le script dans api.js
+    4 - python web                                  | integrer l'execution du/des fichier python
+____________________________________________________________________________________________________________________
+
+A - autre:
+    1 - clean le code                               |
+    2 - achter webcam                               |
+    3 - phase de test avec webcam                   |
+    4 - depart vers le dev app mobile               |
+
+agenda:
+    P3      | 1er release
+    P2a     | 1er release
+    P2b     | 1er release
+    W4      | 1er release
+    ========================
+    W3      | 2eme release
+    W1      | 2eme release
+    W2      | 2eme release
+    ========================
+    A1      | suite
+    A2      | suite
+    A3      | suite
+    A4      | suite
+
+Upgrade:
+    Avec une boucle juste apres avoir retrieve le dataset des cartes, 
+        chunck le tableau avec des boucles en faisant des tableau de 1000 element puise definir le nom/id/autre du premier items de chaque tableau, 
+        pour pouvoir se dire "je cherche une carte dont le nom commance par "st" donc c'est dans le tableau qui commence avec un item en "s" si pas trouver, 
+        on cherche dans celui d'apres (on peut même paralléliser la recherche sur deux tableau minimum pour être sur de trouver le bon element). 
+
+    Bien ranger les tableau dans l'ordre croissant selon le parametre choisit pour splitter
+

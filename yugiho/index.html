@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+        <title>Test yugiho</title>
+        <script src="./node_modules/axios/dist/axios.min.js"></script>
+        <!-- <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+        <script defer src="https://pyscript.net/latest/pyscript.js"></script> -->
+    </head>
+
+    <script type="module">
+
+        const token = "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYXJkdHJhZGVyLXByb2R1Y3Rpb24iLCJzdWIiOiJhcHA6NzEzMCIsImF1ZCI6ImFwcDo3MTMwIiwiZXhwIjo0ODQ2Mzg3MzE3LCJqdGkiOiI2OTI4NTBlNy1jNzQ2LTRhZWUtODY1Zi00MDllZTg0NTU0N2EiLCJpYXQiOjE2OTA3MTM3MTcsIm5hbWUiOiJWYXJ0dXMgQXBwIDIwMjMwNzMwMTA0MTU3In0.pymKhL_jZDO_oRuz38HTe1X6uM_E-WI5pJvfJJPsALnoj69c7FK74LF_whMr3i3W87J5P5FvTXn4fZv5sPFmwpd_vKSN3z7SjVvOrpWaog3PnT9iqYGCQSLROMBn4bcY-aHZfDsJ2vOgrfzmmJNk4dJM-QRqM3GDOuiEkXxpX0i9XI_Tjl0oS-xDLc56-kQBpw4u-3_TlZAMvvPbe7QzuF7KCxwuCJKKmboyUVWTh-BZiRDMlvH8ZvW47BwVWrRBOwYXUBx3bdBU1wp3s9mrTmnhR8wSh1U9uSLrG7sJZlEW5P4GjMr5eIQ22K5DkyvmZTdWph7LIvu24fttMvzsBQ"
+
+        const myButton = document.querySelector('.button')
+        const myButtonToSplit = document.querySelector('.splitText')
+
+        myButton.addEventListener('click', () => {
+            //give us the complet list off all card existing with all informations
+            axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php')
+                .then(function(response) {
+                    const myCode = 'SP18-EN028'
+                    let condition = false
+                    let indice = 0
+                    while(condition == false) {
+                        if(response.data.data[indice].card_sets){
+                            const card_sets = response.data.data[indice].card_sets
+                            card_sets.forEach(element => {
+                                if(element.set_code == myCode) {
+                                    console.log(response.data.data[indice].name)
+                                }
+                            });
+                        }
+                        indice += 1
+                        if(indice > 1000) {
+                            condition = true
+                        }
+                    }
+                })
+            }
+        )
+
+        myButtonToSplit.addEventListener('click', () => {
+                const mytext = document.getElementById('output').textContent
+                const mytextSplit = mytext.split(' ')
+                console.log(mytextSplit)
+            }
+        )
+
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const textContent = event.target.result;
+                document.getElementById('output').textContent = textContent;
+            };
+
+            // Check if a file was selected before reading it
+            if (file) {
+                reader.readAsText(file);
+            }
+        });
+
+    </script>
+
+    <body>
+        <button class="button">Click me</button>
+        <button class="splitText">Click me to split text</button>
+        <input type="file" id="fileInput">
+        <div id="output"></div>
+    </body>
+
+
+</html>

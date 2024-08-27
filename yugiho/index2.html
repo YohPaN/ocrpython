@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Read Text File in Browser</title>
+</head>
+<body>
+  <input type="file" id="fileInput">
+  <div id="output"></div>
+
+  <script>
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function(event) {
+        const textContent = event.target.result;
+        document.getElementById('output').textContent = textContent;
+      };
+
+      // Check if a file was selected before reading it
+      if (file) {
+        reader.readAsText(file);
+      }
+    });
+  </script>
+</body>
+</html>
